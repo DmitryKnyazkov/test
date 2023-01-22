@@ -1,0 +1,75 @@
+
+
+class Node:
+    def __init__(self, znach, next_=None):
+        self.znach = znach
+        self.next_ = None
+        self.set_next(next_)
+
+    def __str__(self):
+        return str(self.znach)
+
+    def __repr__(self):
+        return f'Node({self.znach}, {self.next_})'
+
+    def is_valid(self, node) -> None:
+        if not isinstance(node, (type(None), Node)):
+            raise TypeError
+
+    def set_next(self, next_ = None):
+        self.is_valid(next_)
+        self.next_ = next_
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        self.len = 0
+        self.list_ = []
+
+    def append(self, appnode):
+        if self.head == None:
+            self.head = appnode
+            self.list_.append(appnode)
+        else:
+            last_index = self.len - 1
+            last_node = self.step_by_step(last_index)
+
+            last_node.set_next(appnode)
+            self.list_.append(appnode)
+
+        self.len += 1
+
+    def step_by_step(self, index):
+        current_node = self.head
+        for _ in range(index):
+            print(type(current_node))
+            print(self.head)
+            current_node = current_node.next
+        return current_node
+
+    def __str__(self):
+            return f'Связаны следующие ноды {self.list_}'
+
+    def __repr__(self):
+        return f'LinkedList{self.list_}'
+
+    def __getitem__(self, index):
+        return self.step_by_step(index)
+
+if __name__ == "__main__":
+    a = Node(1)
+    b = Node(2)
+    c = Node(3)
+    d = Node(4)
+
+    aa = LinkedList()
+    print(aa)
+    aa.append(a)
+    print(aa)
+    aa.append(b)
+    print(aa)
+    aa.append(c)
+    print(aa)
+    aa.append(d)
+    print(aa)
